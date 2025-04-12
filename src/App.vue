@@ -2,26 +2,26 @@
 import { ref } from 'vue';
 import axios from 'axios';
 
-// Variables reactivas
-const selectedTable = ref('universes'); // Tabla seleccionada
-const tableData = ref([]); // Datos de la tabla seleccionada
-const recordId = ref(''); // ID del registro a buscar
-const recordData = ref(null); // Datos del registro específico
 
-// URLs de los endpoints
+const selectedTable = ref('universes'); 
+const tableData = ref([]); 
+const recordId = ref(''); 
+const recordData = ref(null); 
+
+
 const endpoints = {
   universes: 'http://127.0.0.1:8000/api/universes',
   genders: 'http://127.0.0.1:8000/api/genders',
   superhero: 'http://127.0.0.1:8000/api/superhero',
 };
 
-// Función para obtener todos los registros de la tabla seleccionada
+
 async function fetchTableData() {
   const response = await axios.get(endpoints[selectedTable.value]);
   tableData.value = response.data;
 }
 
-// Función para obtener un registro específico por ID
+
 async function fetchRecordData() {
   const response = await axios.get(`${endpoints[selectedTable.value]}/${recordId.value}`);
   recordData.value = response.data;
@@ -30,7 +30,7 @@ async function fetchRecordData() {
 
 <template>
   <div style="display: flex; gap: 20px; padding: 20px;">
-    <!-- Selector de tabla y salida de nombres -->
+
     <div style="flex: 1; border-right: 1px solid #ccc; padding-right: 20px;">
       <h2>Choose a Table</h2>
       <div style="margin-bottom: 20px;">
@@ -50,7 +50,7 @@ async function fetchRecordData() {
       </ul>
     </div>
 
-    <!-- Buscar por ID y lista completa -->
+
     <div style="flex: 1; padding-left: 20px;">
       <h2>Find Record</h2>
       <div style="margin-bottom: 20px;">
